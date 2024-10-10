@@ -1,3 +1,22 @@
+-- LocalScript
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local isThrowEnabled = false
+
+-- UI setup
+local screenGui = Instance.new("ScreenGui", player.PlayerGui)
+local enableButton = Instance.new("TextButton", screenGui)
+local disableButton = Instance.new("TextButton", screenGui)
+
+-- Enable Button setup
+enableButton.Position = UDim2.new(0.5, -50, 0, 50)
+enableButton.Size = UDim2.new(0, 100, 0, 50)
+enableButton.Text = "ဖွင့်မည်"
+enableButton.BackgroundColor3 = Color3.new(0, 1, 0) -- Green
+enableButton.Draggable = true
+
 -- Disable Button setup
 disableButton.Position = UDim2.new(0.5, -50, 0, 110)
 disableButton.Size = UDim2.new(0, 100, 0, 50)
