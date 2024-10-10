@@ -1,0 +1,55 @@
+-- UI setup
+local player = game.Players.LocalPlayer
+local screenGui = Instance.new("ScreenGui", player.PlayerGui)
+local openButton = Instance.new("TextButton", screenGui)
+local closeButton = Instance.new("TextButton", screenGui)
+
+openButton.Position = UDim2.new(0.5, -50, 0, 50)
+openButton.Size = UDim2.new(0, 100, 0, 50)
+openButton.Text = "ဖွင့်မည်"
+openButton.BackgroundColor3 = Color3.new(0, 1, 0) -- Green
+openButton.Draggable = true
+
+closeButton.Position = UDim2.new(0.5, -50, 0, 120)
+closeButton.Size = UDim2.new(0, 100, 0, 50)
+closeButton.Text = "ပိတ်မည်"
+closeButton.BackgroundColor3 = Color3.new(1, 0, 0) -- Red
+closeButton.Draggable = true
+closeButton.Visible = false -- Initially hidden
+
+local isShowingSafeGlass = false
+
+-- Function to change glass pane color
+local function changeGlassColor(isVisible)
+    for _,v in pairs(game:GetService("Workspace")["Glass Bridge"].GlassPane:GetDescendants()) do
+        if v.Name == "TouchInterest" then
+            if isVisible then
+                v.Parent.Color = Color3.fromRGB(255, 0, 0) -- Change to Red for unsafe
+            elseif v.Parent:IsA("Part") then
+                v.Parent.Color = Color3.fromRGB(0, 255, 0) -- Change to Green for safe
+            else
+                v.Parent.Color = Color3.fromRGB(255, 255, 255) -- Reset to White
+            end
+        end
+    end
+end
+
+-- Open button functionality
+openButton.MouseButton1Click:Connect(function()
+    if not isShowingSafeGlass then
+        changeGlassColor(true) -- Show safe/unsafe glass by changing color
+        isShowingSafeGlass = true
+        openButton.Visible = false
+        closeButton.Visible = true
+    end
+end)
+
+-- Close button functionality
+closeButton.MouseButton1Click:Connect(function()
+    if isShowingSafeGlass then
+        changeGlassColor(false) -- Reset glass colors to default
+        isShowingSafeGlass = false
+        closeButton.Visible = false
+        openButton.Visible = true
+    end
+end)
