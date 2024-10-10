@@ -14,13 +14,13 @@ local destroyButton = Instance.new("TextButton", screenGui)
 mainButton.Position = UDim2.new(0.5, -50, 0, 50)
 mainButton.Size = UDim2.new(0, 50, 0, 50)
 mainButton.Text = "ဖွင့်မည်"
-mainButton.BackgroundColor3 = Color3.new(1, 1, 0) -- Yellow
+mainButton.BackgroundColor3 = Color3.new(1, 1, 1) -- White
 mainButton.Draggable = true
 
-destroyButton.Position = UDim2.new(0.5, 90, 0, 50)
+destroyButton.Position = UDim2.new(0.5, 75, 0, 70)
 destroyButton.Size = UDim2.new(0, 40, 0, 40)
 destroyButton.Text = "ဖျောက်မည်"
-destroyButton.BackgroundColor3 = Color3.new(0, 0, 1) -- Yellow
+destroyButton.BackgroundColor3 = Color3.new(1, 1, 1) -- White
 destroyButton.Draggable = true
 
 -- Function to check if player has the bomb
@@ -69,7 +69,7 @@ mainButton.MouseButton1Click:Connect(function()
     isBombTagger = not isBombTagger
     if isBombTagger then
         mainButton.Text = "ဖွင့်မည်"
-        mainButton.BackgroundColor3 = Color3.new(0, 1, 0) -- Green
+        mainButton.BackgroundColor3 = Color3.new(0, 0, 1) -- Blue
         handleTeleportation()
     else
         mainButton.Text = "ပိတ်မည်"
